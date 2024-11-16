@@ -45,7 +45,8 @@ var getWorldsParam = {
     },
     body: JSON.stringify({
             pageId: route.params.world,
-        })
+        }),
+    referrerPolicy: "unsafe-url"
     }
 var worldsResult = await $fetch(getWorldsUrl, getWorldsParam)
 var worldJSON = JSON.parse(worldsResult.content[0].text.split('```')[1])

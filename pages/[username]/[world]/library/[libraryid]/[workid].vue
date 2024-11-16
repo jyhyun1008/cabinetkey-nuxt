@@ -50,7 +50,8 @@ var getWorldsParam = {
     },
     body: JSON.stringify({
             pageId: route.params.world,
-        })
+        }),
+    referrerPolicy: "unsafe-url"
     }
 var worldsResult = await $fetch(getWorldsUrl, getWorldsParam)
 var worldJSON = JSON.parse(worldsResult.content[0].text.split('```')[1])
@@ -72,7 +73,8 @@ var getNoteParam = {
     },
     body: JSON.stringify({
         noteId: noteId,
-    })
+    }),
+    referrerPolicy: "unsafe-url"
 }
 var noteResult = await $fetch(getNoteUrl, getNoteParam)
 var note = noteResult.text.split('```')

@@ -40,7 +40,8 @@ var getWorldsParam = {
     },
     body: JSON.stringify({
             pageId: route.params.world,
-        })
+        }),
+    referrerPolicy: "unsafe-url"
     }
 var worldsResult = await $fetch(getWorldsUrl, getWorldsParam)
 var bannerUrl = worldsResult.eyeCatchingImage ? worldsResult.eyeCatchingImage.url : decodeURIComponent(worldsResult.user.avatarUrl.split('?url=')[1].split('&')[0])

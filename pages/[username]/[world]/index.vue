@@ -114,7 +114,8 @@ var getWorldsParam = {
     },
     body: JSON.stringify({
             pageId: route.params.world,
-        })
+        }),
+    referrerPolicy: "unsafe-url"
     }
 var worldsResult = await $fetch(getWorldsUrl, getWorldsParam)
 
@@ -136,7 +137,8 @@ var getNotesParam = {
             limit: 10,
             tag: 'cabinetKeyWorks',
             query: [[route.params.world]]
-        })
+        }),
+    referrerPolicy: "unsafe-url"
     }
 var notesResult = await $fetch(getNotesUrl, getNotesParam)
         

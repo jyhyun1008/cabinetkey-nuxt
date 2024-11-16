@@ -31,7 +31,8 @@ var getWorldsNoteParam = {
     body: JSON.stringify({
         limit: 100,
         query: 'cabinetKeySettings'
-        })
+        }),
+    referrerPolicy: "unsafe-url"
     }
 
 var worldsNoteResult = await $fetch(getWorldsNoteUrl, getWorldsNoteParam)
@@ -43,14 +44,15 @@ for await (var world of worldsNoteResult) {
 
     var getWorldsUrl = config.public.misskey+`/api/pages/show`
     var getWorldsParam = {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json',
-        },
-        body: JSON.stringify({
-                pageId: pageId,
-            })
-        }
+    method: 'POST',
+    headers: {
+        'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+            pageId: pageId,
+        }),
+    referrerPolicy: "unsafe-url"
+    }
     var worldsResult = await $fetch(getWorldsUrl, getWorldsParam)
     console.log(JSON.parse(worldsResult.content[0].text.split('```')[1]))
     if (JSON.parse(worldsResult.content[0].text.split('```')[1]).info.vis == 'public') {
