@@ -31,8 +31,7 @@ var getWorldsNoteParam = {
     body: JSON.stringify({
         limit: 100,
         query: 'cabinetKeySettings'
-        }),
-    referrerPolicy: "unsafe-url"
+        })
     }
 
 var worldsNoteResult = await $fetch(getWorldsNoteUrl, getWorldsNoteParam)
@@ -50,8 +49,7 @@ for await (var world of worldsNoteResult) {
     },
     body: JSON.stringify({
             pageId: pageId,
-        }),
-    referrerPolicy: "unsafe-url"
+        })
     }
     var worldsResult = await $fetch(getWorldsUrl, getWorldsParam)
     console.log(JSON.parse(worldsResult.content[0].text.split('```')[1]))

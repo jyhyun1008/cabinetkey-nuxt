@@ -40,8 +40,7 @@ const route = useRoute()
         },
         body: JSON.stringify({
             username: route.params.username
-        }),
-    referrerPolicy: "unsafe-url"
+        })
     }
 
     var profileResult = await $fetch(getProfileUrl, getProfileParam)
@@ -58,8 +57,7 @@ const route = useRoute()
             userId: profileResult.id,
             limit: 100,
             query: 'cabinetKeySettings'
-            }),
-    referrerPolicy: "unsafe-url"
+            })
         }
     
     var worldsNoteResult = await $fetch(getWorldsNoteUrl, getWorldsNoteParam)

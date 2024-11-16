@@ -27,7 +27,7 @@
                 <div class="world-text">
                     <div class="world-title">{{worldsResult.title}}</div>
                     <div class="world-name">by @{{worldsResult.user.username}}</div>
-                    <div class="world-description">{{description}}</div>
+                    <div class="world-description">{{worldsResult.summary}}</div>
                 </div>
             </router-link>
         </div>
@@ -47,8 +47,7 @@ var getWorldsParam = {
     },
     body: JSON.stringify({
             pageId: route.params.world,
-        }),
-    referrerPolicy: "unsafe-url"
+        })
     }
 var worldsResult = await $fetch(getWorldsUrl, getWorldsParam)
 var bannerUrl = worldsResult.eyeCatchingImage ? worldsResult.eyeCatchingImage.url : decodeURIComponent(worldsResult.user.avatarUrl.split('?url=')[1].split('&')[0])

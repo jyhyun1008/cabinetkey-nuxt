@@ -30,7 +30,7 @@
                 <div class="world-text">
                     <div class="world-title">{{worldsResult.title}}</div>
                     <div class="world-name">by @{{worldsResult.user.username}}</div>
-                    <div class="world-description">{{description}}</div>
+                    <div class="world-description">{{worldsResult.summary}}</div>
                 </div>
             </router-link>
         </div>
@@ -50,8 +50,7 @@ var getWorldsParam = {
     },
     body: JSON.stringify({
             pageId: route.params.world,
-        }),
-    referrerPolicy: "unsafe-url"
+        })
     }
 var worldsResult = await $fetch(getWorldsUrl, getWorldsParam)
 var worldJSON = JSON.parse(worldsResult.content[0].text.split('```')[1])
@@ -73,8 +72,7 @@ var getNoteParam = {
     },
     body: JSON.stringify({
         noteId: noteId,
-    }),
-    referrerPolicy: "unsafe-url"
+    })
 }
 var noteResult = await $fetch(getNoteUrl, getNoteParam)
 var note = noteResult.text.split('```')

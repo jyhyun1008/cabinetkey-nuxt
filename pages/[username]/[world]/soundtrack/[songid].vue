@@ -6,12 +6,12 @@
                 <div id="url"></div>
                 <div id="username"><a style="text-decoration: none; color: inherit;" :href=usernameHref>by @{{ worldsResult.user.username }}</a></div>
                 <div id="embedd" v-if="songHref"><iframe width="100%" :style=songStyle scrolling="no" frameborder="no" allow="autoplay" :src=songHref></iframe></div>
-                <div id="description">{{ songJSON.description }}</div>
+                <div id="description" v-html="`${marked.parse(songJSON.description)}`"></div>
             </div>
         </div>
         <h1>가사</h1>
         <div id="songs-lyrics" class="box-cont">
-            <div>{{songJSON.lyrics}}</div>
+            <div v-html="`${marked.parse(songJSON.lyrics)}`"></div>
         </div>
         <h1>연관된 캐릭터</h1>
         <div v-if="songJSON.relatedTo" id="info-character">
@@ -39,7 +39,7 @@
                 <div class="world-text">
                     <div class="world-title">{{worldsResult.title}}</div>
                     <div class="world-name">by @{{worldsResult.user.username}}</div>
-                    <div class="world-description">{{description}}</div>
+                    <div class="world-description">{{worldsResult.summary}}</div>
                 </div>
             </router-link>
         </div>
@@ -59,8 +59,7 @@ var getWorldsParam = {
     },
     body: JSON.stringify({
             pageId: route.params.world,
-        }),
-    referrerPolicy: "unsafe-url"
+        })
     }
 var worldsResult = await $fetch(getWorldsUrl, getWorldsParam)
 var worldJSON = JSON.parse(worldsResult.content[0].text.split('```')[1])

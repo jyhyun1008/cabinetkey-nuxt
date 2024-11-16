@@ -7,7 +7,7 @@
                 <div id="title">장소 [{{ route.params.x}}, {{route.params.y }}]</div>
                 <div id="url"></div>
                 <div id="username"><a style="text-decoration: none; color: inherit;" :href=usernameHref>by @{{worldsResult.user.username}}</a></div>
-                <div id="description">{{ locationJSON.description }}</div>
+                <div id="description" v-html="`${marked.parse(locationJSON.description)}`"></div>
                 <div class="character-list" v-for="years of Object.keys(locationJSON)">
                     <div class="list-title">{{ years.replace(',', '-') }}</div><div><a :href="`/${route.params.username}/${route.params.world}/location/${route.params.x}-${route.params.y}/${years}`">{{ locationJSON[years].name }}</a></div>
                 </div>
@@ -20,7 +20,7 @@
                 <div class="world-text">
                     <div class="world-title">{{worldsResult.title}}</div>
                     <div class="world-name">by @{{worldsResult.user.username}}</div>
-                    <div class="world-description">{{description}}</div>
+                    <div class="world-description">{{worldsResult.summary}}</div>
                 </div>
             </router-link>
         </div>
@@ -40,8 +40,7 @@ var getWorldsParam = {
     },
     body: JSON.stringify({
             pageId: route.params.world,
-        }),
-    referrerPolicy: "unsafe-url"
+        })
     }
 var worldsResult = await $fetch(getWorldsUrl, getWorldsParam)
 var bannerUrl = worldsResult.eyeCatchingImage ? worldsResult.eyeCatchingImage.url : decodeURIComponent(worldsResult.user.avatarUrl.split('?url=')[1].split('&')[0])

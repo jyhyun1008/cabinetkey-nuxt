@@ -7,7 +7,7 @@
                 <div id="username"><a style="text-decoration: none; color: inherit;" :href=usernameHref >by @{{worldsResult.user.username}}</a></div>
                 BGM: <router-link v-if="songHref" :to="`/${route.params.username}/${route.params.world}/soundtrack/${songIndex}`" class="link-accent">{{worldJSON.themeSong[songIndex-1].title}}</router-link>
                 <div id="embedd" v-if="songHref"><iframe width="100%" :style=songStyle scrolling="no" frameborder="no" allow="autoplay" :src=songHref></iframe></div>
-                <div id="description">{{ noteText }}</div>
+                <div id="description" v-html="`${marked.parse(noteText)}`"></div>
             </div>
         </div>
         <div id="world-nav">
@@ -32,7 +32,7 @@
                 <div class="world-text">
                     <div class="world-title">{{worldsResult.title}}</div>
                     <div class="world-name">by @{{worldsResult.user.username}}</div>
-                    <div class="world-description">{{description}}</div>
+                    <div class="world-description">{{worldsResult.summary}}</div>
                 </div>
             </router-link>
         </div>
@@ -52,8 +52,7 @@ var getWorldsParam = {
     },
     body: JSON.stringify({
             pageId: route.params.world,
-        }),
-    referrerPolicy: "unsafe-url"
+        })
     }
 
 var worldsResult = await $fetch(getWorldsUrl, getWorldsParam)
@@ -76,8 +75,7 @@ var getNoteParam = {
     },
     body: JSON.stringify({
         noteId: noteId,
-    }),
-    referrerPolicy: "unsafe-url"
+    })
 }
 var noteResult = await $fetch(getNoteUrl, getNoteParam)
 var note = noteResult.text.split('```')
