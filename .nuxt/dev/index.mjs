@@ -706,7 +706,7 @@ const _inlineRuntimeConfig = {
     }
   },
   "public": {
-    "misskey": "http://198.13.62.243"
+    "misskey": "https://room.peacht.art"
   }
 };
 const envOptions = {

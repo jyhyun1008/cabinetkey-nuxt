@@ -33,14 +33,12 @@
         <div v-for="category of Object.keys(characterJSON.relatedTo)">
             <div style="border-radius: 15px; background-color: var(--accent); color: white; width: 100%; padding: 5px; text-align: center; margin-bottom: 12px;">{{category}}</div>
             <div v-for="character of characterJSON.relatedTo[category]" class="info-character">
-                <div>
                     <router-link :to="`/${route.params.username}/${route.params.world}/character/${character}`">
                         <img :src=worldJSON.character.list[character].avatar />
                         <div class="character-name">{{worldJSON.character.list[character].name}}</div>
                         <div class="character-category">{{worldJSON.character.category[worldJSON.character.list[character].category]}}</div>
                     </router-link>
                 </div>
-            </div>
         </div>
         <h1>소속 캐비닛</h1>
         <div id="worlds-cont">
