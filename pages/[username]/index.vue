@@ -29,6 +29,7 @@
 <script setup>
 import { onMounted } from 'vue';
 const config = useRuntimeConfig()
+import { marked } from 'marked';
 
 const route = useRoute()
 

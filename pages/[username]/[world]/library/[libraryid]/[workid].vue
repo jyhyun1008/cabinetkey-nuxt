@@ -38,6 +38,7 @@
 </template>
 <script setup>
 import { onMounted } from 'vue';
+import { marked } from 'marked';
 
 const route = useRoute()
 
