@@ -5,7 +5,7 @@
                 <div id="title-box"><span id="title">{{ noteResult.cw.split('#')[0] }}</span> <span class="vis" :class=noteResult.visibility >{{ noteResult.visibility }}</span></div>
                 <div id="url"></div>
                 <div id="username"><a style="text-decoration: none; color: inherit;" :href=usernameHref >by @{{worldsResult.user.username}}</a></div>
-                BGM: <router-link v-if="songHref" :to="`/${route.params.username}/${route.params.world}/soundtrack/${songIndex}`" class="link-accent">{{worldJSON.themeSong[songIndex-1].title}}</router-link>
+                <div v-if="songHref">BGM: <router-link :to="`/${route.params.username}/${route.params.world}/soundtrack/${songIndex}`" class="link-accent">{{worldJSON.themeSong[songIndex-1].title}}</router-link></div>
                 <div id="embedd" v-if="songHref"><iframe width="100%" :style=songStyle scrolling="no" frameborder="no" allow="autoplay" :src=songHref></iframe></div>
                 <div id="description" v-html="`${marked.parse(noteText)}`"></div>
             </div>

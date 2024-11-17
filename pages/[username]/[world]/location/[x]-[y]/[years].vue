@@ -85,10 +85,6 @@ img {
     height: 128px;
 }
 
-#username, .world-name {
-    margin-bottom: 10px;
-}
-
 #location-cont, .box-cont {
     width: 100%;
     border-radius: 15px;

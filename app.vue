@@ -315,4 +315,8 @@ span.public {
     border-radius: 10px;
 }
 
+#username, .world-name {
+    margin-bottom: 10px;
+}
+
 </style>
