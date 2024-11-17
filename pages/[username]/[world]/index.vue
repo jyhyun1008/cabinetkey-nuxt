@@ -132,10 +132,11 @@ var getNotesParam = {
     },
     body: JSON.stringify({
             limit: 10,
-            tag: route.params.world
+            tag: route.params.world,
         })
     }
 var notesResult = await $fetch(getNotesUrl, getNotesParam)
+console.log(notesResult)
         
 onMounted(async ()=> {
     var currentYear

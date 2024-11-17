@@ -25,7 +25,7 @@
         </div>
         <h1>사용된 작품</h1>
         <div v-if="notesResult.length > 0" id="works-content">
-            <div class="box-cont" v-for="(note, i) of notesResult">
+            <div class="box-cont" v-for="(note, i) of notesResult" style="margin-bottom: 20px;">
                 <div style="background-color: var(--accent); color: white; width: 50px; text-align: center;">{{i+1}}</div>
                 <router-link style="flex-grow: 1;" :to="`/${note.user.username}/${JSON.parse(note.text.split('```')[1]).url}`">
                     <div>{{note.cw.split('#')[0]}} <span class="vis" :class=note.visibility>{{note.visibility}}</span></div>
@@ -80,15 +80,14 @@ if (songJSON.embed) {
     }
 }
 
-var getNotesUrl = config.public.misskey+`/api/notes/search-by-tag`
+var getNotesUrl = config.public.misskey+`/api/notes/search`
 var getNotesParam = {
     method: 'POST',
     headers: {
         'content-type': 'application/json',
     },
     body: JSON.stringify({
-            tag: 'cabinetKeyWorks',
-            query: [['soundtrack/'+route.params.songid], [route.params.world]]
+            query: route.params.world+'/soundtrack/'+route.params.songid
         })
     }
 var notesResult = await $fetch(getNotesUrl, getNotesParam)

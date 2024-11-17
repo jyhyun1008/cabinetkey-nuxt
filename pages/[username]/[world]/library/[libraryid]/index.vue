@@ -11,7 +11,7 @@
             </div>
         </div>
         <div id="works-content">
-            <div class="box-cont" v-for="(workContent, j) of libraryJSON.contents">
+            <div class="box-cont" v-for="(workContent, j) of libraryJSON.contents" style="margin-bottom: 20px;">
                 <div style="background-color: var(--accent); color: white; width: 50px; text-align: center;">{{j+1}}</div>
                 <router-link style="flex-grow: 1;" :to="`/${route.params.username}/${route.params.world}/library/${route.params.libraryid}/${j+1}`">
                     <div>{{workContent.title}} <span class="vis" :class=workContent.vis>{{workContent.vis}}</span></div>

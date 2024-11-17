@@ -15,11 +15,11 @@
         </div>
         <h1>연관된 캐릭터</h1>
         <div v-if="noteJSON.relatedTo" id="info-character">
-            <div v-for="character in noteJSON.relatedTo.filter(result => result.split('/')[0] == 'character')">
-                <router-link :to="`/${route.params.username}/${route.params.world}/character/${character}`">
-                    <img :src="`${worldJSON.character.list[character.split('/')[1]].avatar}`" />
-                    <div class="character-name">{{worldJSON.character.list[character.split('/')[1]].name}}</div>
-                    <div class="character-category">{{worldJSON.character.category[worldJSON.character.list[character.split('/')[1]].category]}}</div>
+            <div v-for="character in noteJSON.relatedTo.filter(result => result.split('/')[1] == 'character')">
+                <router-link :to="`/${route.params.username}/${character}`">
+                    <img :src="`${worldJSON.character.list[character.split('/')[2]].avatar}`" />
+                    <div class="character-name">{{worldJSON.character.list[character.split('/')[2]].name}}</div>
+                    <div class="character-category">{{worldJSON.character.category[worldJSON.character.list[character.split('/')[2]].category]}}</div>
                 </router-link>
             </div>
         </div>
