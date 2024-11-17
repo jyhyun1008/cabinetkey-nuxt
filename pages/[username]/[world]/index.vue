@@ -78,8 +78,8 @@
             <h1 v-if="worldJSON.themeSong">테마송</h1>
             <div v-for="(songId, i) of worldJSON.themeSong" class="box-cont" style="margin-bottom: 20px;">
                     <div style="background-color: var(--accent); color: white; width: 50px; text-align: center;">{{i+1}}</div>
-                <router-link style="flex-grow: 1;" :to="`/${route.params.username}/${route.params.world}/soundtrack/${i+1}`">
-                    <div>{{songId.title}} <span class="vis themesong">{{songId.artist}}</span></div>
+                <router-link style="flex-grow: 1; max-width: calc(100% - 60px);" :to="`/${route.params.username}/${route.params.world}/soundtrack/${i+1}`">
+                    <div style="width: max-content;">{{songId.title}} <span class="vis themesong">{{songId.artist}}</span></div>
                 </router-link>
             </div>
             <h1 v-if="worldJSON.references">관련 문헌</h1>
