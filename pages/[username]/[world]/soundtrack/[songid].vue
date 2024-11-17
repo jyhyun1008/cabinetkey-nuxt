@@ -13,7 +13,7 @@
         <div id="songs-lyrics" class="box-cont">
             <div v-html="`${marked.parse(songJSON.lyrics)}`"></div>
         </div>
-        <h1>연관된 캐릭터</h1>
+        <h1 v-if="songJSON.relatedTo.length > 0">연관된 캐릭터</h1>
         <div v-if="songJSON.relatedTo" id="info-character">
             <div v-for="character of songJSON.relatedTo">
                 <router-link :to="`/${route.params.username}/${route.params.world}/character/${character}`">
