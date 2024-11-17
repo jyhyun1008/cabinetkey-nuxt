@@ -132,7 +132,7 @@ var getNotesParam = {
     },
     body: JSON.stringify({
             limit: 10,
-            query: [[route.params.world], ['cabinetKeyWorks']]
+            tag: route.params.world
         })
     }
 var notesResult = await $fetch(getNotesUrl, getNotesParam)
