@@ -19,10 +19,12 @@
                 <div class="character-list" v-if="characterJSON.lived">
                     <div class="list-title">생몰년</div><div>{{ characterJSON.lived[0] }} - {{ characterJSON.lived[1] }}</div>
                 </div>
-                <div id="description" v-html="`${marked.parse(characterJSON.description)}`"></div>
+                <div id="summary">{{ characterJSON.summary }}</div>
             </div>
         </div>
-        <h1 v-if="characterJSON.themeSong">이 캐릭터의 테마송</h1>
+        <h1>상세</h1>
+        <div id="description" class="box-cont"><div v-html="`${marked.parse(characterJSON.description)}`"></div></div>
+        <h1 v-if="characterJSON.themeSong.length > 0">이 캐릭터의 테마송</h1>
         <div v-for="(song, i) of characterJSON.themeSong" class="box-cont">
             <div style="background-color: var(--accent); color: white; width: 50px; text-align: center;">{{i+1}}</div>
             <router-link style="flex-grow: 1;" :to="`/${route.params.username}/${route.params.world}/soundtrack/${song+1}`">
@@ -32,13 +34,15 @@
         <h1>연관된 캐릭터</h1>
         <div v-for="category of Object.keys(characterJSON.relatedTo)">
             <div style="border-radius: 15px; background-color: var(--accent); color: white; width: 100%; padding: 5px; text-align: center; margin-bottom: 12px;">{{category}}</div>
-            <div v-for="character of characterJSON.relatedTo[category]" class="info-character">
+            <div class="info-character">
+                <div v-for="character of characterJSON.relatedTo[category]">
                     <router-link :to="`/${route.params.username}/${route.params.world}/character/${character}`">
                         <img :src=worldJSON.character.list[character].avatar />
                         <div class="character-name">{{worldJSON.character.list[character].name}}</div>
                         <div class="character-category">{{worldJSON.character.category[worldJSON.character.list[character].category]}}</div>
                     </router-link>
                 </div>
+            </div>
         </div>
         <h1>소속 캐비닛</h1>
         <div id="worlds-cont">
@@ -146,12 +150,6 @@ span.vis {
 span.public {
     background-color: var(--accent);
     color: white;
-}
-
-.list-title {
-    background-color: var(--accent);
-    color: white;
-    border-radius: 10px;
 }
 
 </style>

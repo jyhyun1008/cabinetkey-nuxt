@@ -309,4 +309,10 @@ span.public {
     color: white;
 }
 
+.list-title {
+    background-color: var(--accent);
+    color: white;
+    border-radius: 10px;
+}
+
 </style>

@@ -1,13 +1,12 @@
 <template>
     <div id="container">
-        <div id="location-cont">
+        <div id="world-cont">
             <div id="banner"><img :src=bannerUrl></div>
             <div id="avatar" v-if="locationJSON.avatar"><img :src=locationJSON.avatar></div>
-            <div id="location-text">
+            <div id="world-text">
                 <div id="title">장소 [{{ route.params.x}}, {{route.params.y }}]</div>
                 <div id="url"></div>
                 <div id="username"><a style="text-decoration: none; color: inherit;" :href=usernameHref>by @{{worldsResult.user.username}}</a></div>
-                <div id="description" v-html="`${marked.parse(locationJSON.description)}`"></div>
                 <div class="character-list" v-for="years of Object.keys(locationJSON)">
                     <div class="list-title">{{ years.replace(',', '-') }}</div><div><a :href="`/${route.params.username}/${route.params.world}/location/${route.params.x}-${route.params.y}/${years}`">{{ locationJSON[years].name }}</a></div>
                 </div>

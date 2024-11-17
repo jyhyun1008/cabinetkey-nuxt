@@ -7,9 +7,11 @@
                 <div id="title">{{ locationJSON.name }}</div>
                 <div id="url"></div>
                 <div id="username"><a style="text-decoration: none; color: inherit;" :href=usernameHref>by @{{worldsResult.user.username}}</a></div>
-                <div id="description" v-html="`${marked.parse(locationJSON.description)}`"></div>
+                <div id="summary">{{ locationJSON.summary }}</div>
             </div>
         </div>
+        <h1>상세</h1>
+        <div id="description" class="box-cont"><div v-html="`${marked.parse(locationJSON.description)}`"></div></div>
         <h1>연관된 캐릭터</h1>
         <div v-if="locationJSON.relatedTo" id="info-character">
             <div v-for="character of locationJSON.relatedTo">
