@@ -144,9 +144,5 @@ onMounted(async ()=> {
     width: 100%;
 }
 
-#name, .world-title {
-    font-weight: 700;
-    font-size: 1.3em;
-}
 
 </style>

@@ -116,10 +116,4 @@ for await (var world of worldsNoteResult) {
     width: 100%;
 }
 
-#name, .world-title {
-    font-weight: 700;
-    font-size: 1.3em;
-}
-
-
 </style>

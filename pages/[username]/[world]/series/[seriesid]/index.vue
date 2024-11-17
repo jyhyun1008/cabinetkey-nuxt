@@ -13,8 +13,8 @@
         <div id="works-content">
             <div class="box-cont" v-for="(workContent, j) of seriesJSON.contents" style="margin-bottom: 20px;">
                 <div style="background-color: var(--accent); color: white; width: 50px; text-align: center;">{{j+1}}</div>
-                <router-link style="flex-grow: 1;" :to="`/${route.params.username}/${route.params.world}/series/${route.params.seriesid}/${j+1}`">
-                    <div>{{workContent.title}} <span class="vis" :class=workContent.vis>{{workContent.vis}}</span></div>
+                <router-link style="flex-grow: 1; max-width: calc(100% - 60px);" :to="`/${route.params.username}/${route.params.world}/series/${route.params.seriesid}/${j+1}`">
+                    <div style="width: max-content;">{{workContent.title}} <span class="vis" :class=workContent.vis>{{workContent.vis}}</span></div>
                 </router-link>
             </div>
         </div>

@@ -27,8 +27,8 @@
         <h1 v-if="characterJSON.themeSong.length > 0">이 캐릭터의 테마송</h1>
         <div v-for="(song, i) of characterJSON.themeSong" class="box-cont">
             <div style="background-color: var(--accent); color: white; width: 50px; text-align: center;">{{i+1}}</div>
-            <router-link style="flex-grow: 1;" :to="`/${route.params.username}/${route.params.world}/soundtrack/${parseInt(song)+1}`">
-                <div>{{worldJSON.themeSong[song].title}} <span class="vis themesong">{{worldJSON.themeSong[song].artist}}</span></div>
+            <router-link style="flex-grow: 1; max-width: calc(100% - 60px);" :to="`/${route.params.username}/${route.params.world}/soundtrack/${parseInt(song)+1}`">
+                <div style="width: max-content;">{{worldJSON.themeSong[song].title}} <span class="vis themesong">{{worldJSON.themeSong[song].artist}}</span></div>
             </router-link>
         </div>
         <h1>연관된 캐릭터</h1>

@@ -27,8 +27,8 @@
         <div v-if="notesResult.length > 0" id="works-content">
             <div class="box-cont" v-for="(note, i) of notesResult" style="margin-bottom: 20px;">
                 <div style="background-color: var(--accent); color: white; width: 50px; text-align: center;">{{i+1}}</div>
-                <router-link style="flex-grow: 1;" :to="`/${note.user.username}/${JSON.parse(note.text.split('```')[1]).url}`">
-                    <div>{{note.cw.split('#')[0]}} <span class="vis" :class=note.visibility>{{note.visibility}}</span></div>
+                <router-link style="flex-grow: 1; max-width: calc(100% - 60px);" :to="`/${note.user.username}/${JSON.parse(note.text.split('```')[1]).url}`">
+                    <div style="width: max-content;"">{{note.cw.split('#')[0]}} <span class="vis" :class=note.visibility>{{note.visibility}}</span></div>
                 </router-link>
             </div>
         </div>

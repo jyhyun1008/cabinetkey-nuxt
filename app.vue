@@ -251,7 +251,7 @@ img {
     font-size: 2em;
 }
 
-.title, .world-title {
+.title, .world-title, #name {
     font-weight: 700;
     font-size: 1.5em;
 }

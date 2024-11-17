@@ -56,8 +56,8 @@
             <h1>최신 작품</h1>
             <div class="box-cont" v-for="(note, j) of notesResult" style="margin-bottom: 20px;">
                 <div style="background-color: var(--accent); color: white; width: 50px; text-align: center;">{{j+1}}</div>
-                <router-link style="flex-grow: 1;" :to="`/${route.params.username}/${JSON.parse(note.text.split('```')[1]).url}`">
-                    <div>[{{ worldJSON.works[parseInt(JSON.parse(note.text.split('```')[1]).url.split('/')[2])].title }}] {{note.cw.split('#')[0]}} <span class="vis" :class=note.visibility>{{note.visibility}}</span></div>
+                <router-link style="flex-grow: 1; max-width: calc(100% - 60px);" :to="`/${route.params.username}/${JSON.parse(note.text.split('```')[1]).url}`">
+                    <div style="width: max-content;">[{{ worldJSON.works[parseInt(JSON.parse(note.text.split('```')[1]).url.split('/')[2])].title }}] {{note.cw.split('#')[0]}} <span class="vis" :class=note.visibility>{{note.visibility}}</span></div>
                 </router-link>
             </div>
             <h1>시리즈 목록</h1>
