@@ -55,7 +55,6 @@ var seriesJSON = worldJSON.works[route.params.seriesid]
 var avatar = seriesJSON.avatar ? seriesJSON.avatar : worldsResult.eyeCatchingImage ? worldsResult.eyeCatchingImage.url : decodeURIComponent(worldsResult.user.avatarUrl.split('?url=')[1].split('&')[0])
 var bannerUrl = seriesJSON.eyeCatchingImage ? seriesJSON.eyeCatchingImage : avatar
 var description = seriesJSON.description
-console.log(seriesJSON)
 
 var worldBannerUrl = worldsResult.eyeCatchingImage ? worldsResult.eyeCatchingImage.url : decodeURIComponent(worldsResult.user.avatarUrl.split('?url=')[1].split('&')[0])
 

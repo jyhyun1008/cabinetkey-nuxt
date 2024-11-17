@@ -9,9 +9,9 @@
             </div>
         </div>
         <div id="world-nav">
-            <div class="world-nav-item" id="work-prev"><div>이전</div></div>
-            <div class="world-nav-item highlighted" id="work-list"><div>목록</div></div>
-            <div class="world-nav-item" id="work-next"><div>다음</div></div>
+            <router-link v-if="parseInt(route.params.libraryid) > 1" class="world-nav-item" :to="`/${route.params.username}/${route.params.world}/library/${route.params.libraryid}/${parseInt(route.params.libraryid) - 1}`" style="text-decoration: none;"><div>이전</div></router-link>
+            <router-link class="world-nav-item highlighted" :to="`/${route.params.username}/${route.params.world}/library/${route.params.libraryid}`" style="text-decoration: none;"><div>목록</div></router-link>
+            <router-link v-if="parseInt(route.params.libraryid) < libraryJSON.contents.length" class="world-nav-item" :to="`/${route.params.username}/${route.params.world}/library/${route.params.libraryid}/${parseInt(route.params.libraryid) + 1}`" style="text-decoration: none;"><div>다음</div></router-link>
         </div>
         <h1>연관된 캐릭터</h1>
         <div v-if="noteJSON.relatedTo" id="info-character">
@@ -82,22 +82,6 @@ var noteJSON = JSON.parse(note[1])
 console.log(noteJSON)
 
 onMounted(async ()=> {
-
-    document.querySelector('#work-list').addEventListener('click', ()=> {
-        location.href='/'+route.params.username+'/'+route.params.world+'/library/'+route.params.libraryid
-    })
-
-    document.querySelector('#work-prev').addEventListener('click', ()=> {
-        if (parseInt(route.params.workid) > 1) {
-            location.href='/'+route.params.username+'/'+route.params.world+'/library/'+route.params.libraryid+'/'+(parseInt(route.params.workid)-1)
-        }
-    })
-
-    document.querySelector('#work-next').addEventListener('click', ()=> {
-        if (parseInt(route.params.workid) < libraryJSON.contents.length) {
-            location.href='/'+route.params.username+'/'+route.params.world+'/library/'+route.params.libraryid+'/'+(parseInt(route.params.workid)+1)
-        }
-    })
 
     document.querySelector('#url').innerText = location.href.split('//')[1]
 })

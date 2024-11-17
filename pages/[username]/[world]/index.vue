@@ -120,7 +120,6 @@ var bannerUrl = worldsResult.eyeCatchingImage ? worldsResult.eyeCatchingImage.ur
 var description = worldsResult.summary ? worldsResult.summary : ''
 var worldJSON = JSON.parse(worldsResult.content[0].text.split('```')[1])
 var markedDescription = marked.parse(worldJSON.info.description)
-console.log(worldJSON)
 
 var usernameHref = '/'+worldsResult.user.username
 
@@ -136,7 +135,6 @@ var getNotesParam = {
         })
     }
 var notesResult = await $fetch(getNotesUrl, getNotesParam)
-console.log(notesResult)
         
 onMounted(async ()=> {
     var currentYear

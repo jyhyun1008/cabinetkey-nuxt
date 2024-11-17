@@ -55,7 +55,6 @@ var libraryJSON = worldJSON.references[route.params.libraryid]
 var avatar = libraryJSON.avatar ? libraryJSON.avatar : worldsResult.eyeCatchingImage ? worldsResult.eyeCatchingImage.url : decodeURIComponent(worldsResult.user.avatarUrl.split('?url=')[1].split('&')[0])
 var bannerUrl = libraryJSON.eyeCatchingImage ? libraryJSON.eyeCatchingImage : worldsResult.eyeCatchingImage ? worldsResult.eyeCatchingImage.url : decodeURIComponent(worldsResult.user.avatarUrl.split('?url=')[1].split('&')[0])
 var description = libraryJSON.description
-console.log(worldJSON)
 
 var usernameHref = '/'+worldsResult.user.username
 

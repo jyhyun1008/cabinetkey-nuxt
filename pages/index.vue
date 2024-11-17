@@ -52,7 +52,6 @@ for await (var world of worldsNoteResult) {
         })
     }
     var worldsResult = await $fetch(getWorldsUrl, getWorldsParam)
-    console.log(JSON.parse(worldsResult.content[0].text.split('```')[1]))
     if (JSON.parse(worldsResult.content[0].text.split('```')[1]).info.vis == 'public') {
         worldsArray.push(worldsResult)
         worldsBannerArray.push(worldsResult.eyeCatchingImage ? worldsResult.eyeCatchingImage.url : decodeURIComponent(worldsResult.user.avatarUrl.split('?url=')[1].split('&')[0]))

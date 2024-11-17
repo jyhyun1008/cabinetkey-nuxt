@@ -62,7 +62,6 @@ var seriesJSON = worldJSON.works[route.params.seriesid]
 
 var bannerUrl = seriesJSON.eyeCatchingImage ? seriesJSON.eyeCatchingImage : worldsResult.eyeCatchingImage ? worldsResult.eyeCatchingImage.url : decodeURIComponent(worldsResult.user.avatarUrl.split('?url=')[1].split('&')[0])
 var description = seriesJSON.description
-console.log(worldJSON)
 
 var usernameHref = '/'+worldsResult.user.username
 
@@ -82,7 +81,6 @@ var noteResult = await $fetch(getNoteUrl, getNoteParam)
 var note = noteResult.text.split('```')
 var noteText = note[0]
 var noteJSON = JSON.parse(note[1])
-console.log(noteJSON)
 
 var songHref = ''
 var songStyle= "height: 166px;"

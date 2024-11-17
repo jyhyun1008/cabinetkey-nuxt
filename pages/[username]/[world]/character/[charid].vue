@@ -80,7 +80,6 @@ var description = worldsResult.summary ? worldsResult.summary : ''
 var usernameHref = '/'+worldsResult.user.username
 var worldJSON = JSON.parse(worldsResult.content[0].text.split('```')[1])
 var characterJSON = worldJSON.character.list[route.params.charid]
-console.log(characterJSON)
 
 onMounted(async ()=> {
     document.querySelector('#url').innerText = location.href.split('//')[1]

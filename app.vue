@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <Head>
+      <Title>CabinetKey 캐비닛키</Title>
+      <Meta name="description" content="작품 설정 정리 사이트"/>
+    </Head>
     <NuxtLayout>
       <div id="nav">
           <div id="logo"><a href="/">CabinetKey</a></div>
