@@ -32,15 +32,15 @@ export default {
 <style>
 
 @font-face {
-    font-family: 'IBMPlexSansKR';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-family: 'Pretendard';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'IBMPlexSansKR';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Bold.woff') format('woff');
+    font-family: 'Pretendard';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
     font-weight: 700;
     font-style: normal;
 }
@@ -58,7 +58,7 @@ div {
 }
 
 body {
-  font-family: 'IBMPlexSansKR';
+  font-family: 'Pretendard';
   margin: 0;
   background-color: var(--bg);
   color: var(--fg);
