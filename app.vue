@@ -208,8 +208,14 @@ img {
     max-width: 300px;
 }
 
+.character-list-chro {
+    grid-template-columns: 1fr 2fr 2fr;
+    max-width: unset;
+}
+
 .character-list > div {
     text-align: center;
+    padding: 4px;
 }
 
 .character-list a {
@@ -319,8 +325,35 @@ span.public {
     border-radius: 10px;
 }
 
+.list-title-sub {
+  background-color: var(--accent-light);
+    color: white;
+    border-radius: 10px;
+}
+
 #username, .world-name {
     margin-bottom: 10px;
+}
+
+#summary {
+  margin-top: 10px;
+}
+
+.display-none {
+    display: none;
+}
+
+.display-chro-list .display-none {
+  display: grid;
+}
+
+#secret, .box-cont-column {
+    flex-direction: column !important;
+    gap: 0;
+}
+
+#secret * {
+    width: 100%;
 }
 
 </style>

@@ -19,11 +19,59 @@
                 <div class="character-list" v-if="characterJSON.lived">
                     <div class="list-title">생몰년</div><div>{{ characterJSON.lived[0] }} - {{ characterJSON.lived[1] }}</div>
                 </div>
+                <div class="character-list" v-if="characterJSON.category">
+                    <div class="list-title">분류</div><div>{{ worldJSON.character.category[characterJSON.category] }}</div>
+                </div>
+                <div class="character-list" v-if="characterJSON.subCategory">
+                    <div class="list-title">하위 분류</div><div>{{ characterJSON.subCategory }}</div>
+                </div>
                 <div id="summary">{{ characterJSON.summary }}</div>
+            </div>
+        </div>
+        <h1 v-if="characterJSON.goal">목표</h1>
+        <div v-for="(goal, i) of characterJSON.goal" class="box-cont">
+            <div style="background-color: var(--accent); color: white; width: 50px; text-align: center;">{{i+1}}</div>
+            <div style="width: max-content;">{{goal}}</div>
+        </div>
+        <h1 v-if="characterJSON.eventChronology || characterJSON.positionChronology">연표</h1>
+        <div class="box-cont box-cont-column">
+            <div style="width:100%;" id="character-chro">
+                <div style="width: 100%;">
+                    <div class="character-list character-list-chro">
+                        <div class="list-title">연도</div>
+                        <div class="list-title">직책</div>
+                        <div class="list-title">사건</div>
+                    </div>
+                </div>
+                <div v-for="i in (parseInt(characterJSON.lived[1]) - parseInt(characterJSON.lived[0] - 1))" style="width:100%;">
+                    <div v-if="!worldJSON.info.mainYear.includes(i+parseInt(characterJSON.lived[0] - 1)) && (characterJSON.positionChronology[`${i+parseInt(characterJSON.lived[0] - 1)}`] || characterJSON.eventChronology[`${i+parseInt(characterJSON.lived[0] - 1)}`])"  class="character-list character-list-chro">
+                        <div class="list-title-sub">{{i+parseInt(characterJSON.lived[0] - 1)}}년</div>
+                        <div v-if="characterJSON.positionChronology[`${i+parseInt(characterJSON.lived[0] - 1)}`]">{{ characterJSON.positionChronology[`${i+parseInt(characterJSON.lived[0] - 1)}`] }}</div>
+                        <div v-else></div>
+                        <div v-if="characterJSON.eventChronology[`${i+parseInt(characterJSON.lived[0] - 1)}`]">{{ characterJSON.eventChronology[`${i+parseInt(characterJSON.lived[0] - 1)}`] }}</div>
+                        <div v-else></div>
+                    </div>
+                    <div v-else-if="!worldJSON.info.mainYear.includes(i+parseInt(characterJSON.lived[0] - 1))" class="character-list character-list-chro display-none">
+                        <div class="list-title-sub">{{i+parseInt(characterJSON.lived[0] - 1)}}년</div>
+                        <div v-if="characterJSON.positionChronology[`${i+parseInt(characterJSON.lived[0] - 1)}`]">{{ characterJSON.positionChronology[`${i+parseInt(characterJSON.lived[0] - 1)}`] }}</div>
+                        <div v-else></div>
+                        <div v-if="characterJSON.eventChronology[`${i+parseInt(characterJSON.lived[0] - 1)}`]">{{ characterJSON.eventChronology[`${i+parseInt(characterJSON.lived[0] - 1)}`] }}</div>
+                        <div v-else></div>
+                    </div>
+                    <div v-else v-for="j in 12" class="character-list character-list-chro">
+                        <div class="list-title">{{i+parseInt(characterJSON.lived[0] - 1)}}년 {{ j }}월</div>
+                        <div v-if="characterJSON.positionChronology[`${i+parseInt(characterJSON.lived[0] - 1)}.${j}`]">{{ characterJSON.positionChronology[`${i+parseInt(characterJSON.lived[0] - 1)}.${j}`] }}</div>
+                        <div v-else></div>
+                        <div v-if="characterJSON.eventChronology[`${i+parseInt(characterJSON.lived[0] - 1)}.${j}`]">{{ characterJSON.eventChronology[`${i+parseInt(characterJSON.lived[0] - 1)}.${j}`] }}</div>
+                        <div v-else></div>
+                    </div>
+                </div>
             </div>
         </div>
         <h1>상세</h1>
         <div id="description" class="box-cont"><div v-html="`${marked.parse(characterJSON.description)}`"></div></div>
+        <h1 v-if="characterJSON.secret">비밀 설정</h1>
+        <div id="secret" class="box-cont"><div id="secret-display" style="color: var(--accent);" v-if="characterJSON.secret">열기</div><div v-html="`${marked.parse(characterJSON.secret)}`" id="secret-content" class="display-none"></div></div>
         <h1 v-if="characterJSON.themeSong.length > 0">이 캐릭터의 테마송</h1>
         <div v-for="(song, i) of characterJSON.themeSong" class="box-cont">
             <div style="background-color: var(--accent); color: white; width: 50px; text-align: center;">{{i+1}}</div>
@@ -83,10 +131,29 @@ var characterJSON = worldJSON.character.list[route.params.charid]
 
 onMounted(async ()=> {
     document.querySelector('#url').innerText = location.href.split('//')[1]
+
+    document.querySelector('#secret-display').addEventListener('click', ()=> {
+        if (document.querySelector('#secret .display-none')) {
+            document.querySelector('#secret #secret-content').classList.remove('display-none')
+            document.querySelector('#secret-display').innerText = '닫기'
+        } else {
+            document.querySelector('#secret #secret-content').classList.add('display-none')
+            document.querySelector('#secret-display').innerText = '열기'
+        }
+    })
+
+    document.querySelector('#character-chro').addEventListener('click', ()=> {
+        if (document.querySelector('#character-chro').classList.length>0) {
+            document.querySelector('#character-chro').classList.remove('display-chro-list')
+        } else {
+            document.querySelector('#character-chro').classList.add('display-chro-list')
+        }
+    })
 })
 
 </script>
 <style>
+
 
 img {
     width: 100%;
