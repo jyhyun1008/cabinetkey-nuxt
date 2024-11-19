@@ -139,7 +139,17 @@ var notesResult = await $fetch(getNotesUrl, getNotesParam)
 onMounted(async ()=> {
     var currentYear
 
-    document.querySelector('#url').innerText = location.href.split('//')[1]
+    document.querySelector('#url').innerHTML = '<span>'+location.href.split('//')[1]+'</span> <i class="hgi-stroke hgi-copy-01"></i>'
+
+    document.querySelector('i.hgi-stroke').addEventListener('click', ()=>{
+        copyToClipboard()
+    })
+
+    function copyToClipboard() {
+        navigator.clipboard.writeText('https://'+document.querySelector('#url span').innerText).then(() => {
+            alert("복사되었습니다.");
+        })
+    };
 
     document.querySelector('#information').addEventListener('click', ()=>{
         document.querySelector('#information').classList.add('highlighted')

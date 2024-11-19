@@ -3,6 +3,7 @@
     <Head>
       <Title>CabinetKey 캐비닛키</Title>
       <Meta name="description" content="작품 설정 정리 사이트"/>
+      <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css">
     </Head>
     <NuxtLayout>
       <div id="nav">

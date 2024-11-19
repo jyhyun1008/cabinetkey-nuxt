@@ -81,7 +81,17 @@ var noteJSON = JSON.parse(note[1])
 
 onMounted(async ()=> {
 
-    document.querySelector('#url').innerText = location.href.split('//')[1]
+    document.querySelector('#url').innerHTML = '<span>'+location.href.split('//')[1]+'</span> <i class="hgi-stroke hgi-copy-01"></i>'
+
+    document.querySelector('i.hgi-stroke').addEventListener('click', ()=>{
+        copyToClipboard()
+    })
+
+    function copyToClipboard() {
+        navigator.clipboard.writeText('https://'+document.querySelector('#url span').innerText).then(() => {
+            alert("복사되었습니다.");
+        })
+    };
 })
 
 </script>
