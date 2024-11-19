@@ -33,8 +33,8 @@
             <div style="background-color: var(--accent); color: white; width: 50px; text-align: center;">{{i+1}}</div>
             <div style="width: max-content;">{{goal}}</div>
         </div>
-        <h1 v-if="characterJSON.eventChronology || characterJSON.positionChronology">연표</h1>
-        <div class="box-cont box-cont-column">
+        <h1 v-if="(characterJSON.eventChronology || characterJSON.positionChronology) && parseInt(characterJSON.lived[0]) && parseInt(characterJSON.lived[1])">연표</h1>
+        <div class="box-cont box-cont-column" v-if="parseInt(characterJSON.lived[0]) && parseInt(characterJSON.lived[1])" >
             <div style="width:100%;" id="character-chro">
                 <div style="width: 100%;">
                     <div class="character-list character-list-chro">
@@ -132,7 +132,8 @@ var characterJSON = worldJSON.character.list[route.params.charid]
 onMounted(async ()=> {
     document.querySelector('#url').innerText = location.href.split('//')[1]
 
-    document.querySelector('#secret-display').addEventListener('click', ()=> {
+    if (document.querySelector('#secret-display')) {
+        document.querySelector('#secret-display').addEventListener('click', ()=> {
         if (document.querySelector('#secret .display-none')) {
             document.querySelector('#secret #secret-content').classList.remove('display-none')
             document.querySelector('#secret-display').innerText = '닫기'
@@ -141,14 +142,17 @@ onMounted(async ()=> {
             document.querySelector('#secret-display').innerText = '열기'
         }
     })
+    }
 
-    document.querySelector('#character-chro').addEventListener('click', ()=> {
+    if (document.querySelector('#character-chro')) {
+        document.querySelector('#character-chro').addEventListener('click', ()=> {
         if (document.querySelector('#character-chro').classList.length>0) {
             document.querySelector('#character-chro').classList.remove('display-chro-list')
         } else {
             document.querySelector('#character-chro').classList.add('display-chro-list')
         }
     })
+    }
 })
 
 </script>
