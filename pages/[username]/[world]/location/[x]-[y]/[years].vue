@@ -10,6 +10,29 @@
                 <div id="summary">{{ locationJSON.summary }}</div>
             </div>
         </div>
+        <h1 v-if="locationJSON.eventChronology && parseInt(route.params.years.split(',')[0]) && parseInt(route.params.years.split(',')[1])">연표</h1>
+        <div class="box-cont box-cont-column" v-if="parseInt(route.params.years.split(',')[0]) && parseInt(route.params.years.split(',')[1])" >
+            <div style="width:100%;" id="location-chro">
+                <div style="width: 100%;">
+                    <div class="location-list">
+                        <div class="list-title">연도</div>
+                        <div class="list-title">사건</div>
+                    </div>
+                </div>
+                <div v-for="i in (parseInt(route.params.years.split(',')[1]) - parseInt(route.params.years.split(',')[0] - 1))" style="width:100%;">
+                    <div v-if="!worldJSON.info.mainYear.includes(i+parseInt(route.params.years.split(',')[0] - 1)) && locationJSON.eventChronology[`${i+parseInt(route.params.years.split(',')[0] - 1)}`]"  class="location-list">
+                        <div class="list-title-sub">{{i+parseInt(route.params.years.split(',')[0] - 1)}}년</div>
+                        <div v-if="locationJSON.eventChronology[`${i+parseInt(route.params.years.split(',')[0] - 1)}`]">{{ locationJSON.eventChronology[`${i+parseInt(route.params.years.split(',')[0] - 1)}`] }}</div>
+                        <div v-else></div>
+                    </div>
+                    <div v-else class="location-list display-none">
+                        <div class="list-title-sub">{{i+parseInt(route.params.years.split(',')[0] - 1)}}년</div>
+                        <div v-if="locationJSON.eventChronology[`${i+parseInt(route.params.years.split(',')[0] - 1)}`]">{{ locationJSON.eventChronology[`${i+parseInt(route.params.years.split(',')[0] - 1)}`] }}</div>
+                        <div v-else></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <h1>상세</h1>
         <div id="description" class="box-cont"><div v-html="`${marked.parse(locationJSON.description)}`"></div></div>
         <h1>연관된 캐릭터</h1>
@@ -25,7 +48,7 @@
         <h1>소속 캐비닛</h1>
         <div id="worlds-cont">
             <router-link :to="`/${route.params.username}/${route.params.world}`" class="world-content">
-                <div class="world-banner"><img :src=bannerUrl></div>
+                <div class="world-banner"><img :src=worldBannerUrl></div>
                 <div class="world-text">
                     <div class="world-title">{{worldsResult.title}}</div>
                     <div class="world-name">by @{{worldsResult.user.username}}</div>
@@ -53,11 +76,12 @@ var getWorldsParam = {
         })
     }
 var worldsResult = await $fetch(getWorldsUrl, getWorldsParam)
-var bannerUrl = worldsResult.eyeCatchingImage ? worldsResult.eyeCatchingImage.url : decodeURIComponent(worldsResult.user.avatarUrl.split('?url=')[1].split('&')[0])
 var description = worldsResult.summary ? worldsResult.summary : ''
 var usernameHref = '/'+worldsResult.user.username
 var worldJSON = JSON.parse(worldsResult.content[0].text.split('```')[1])
 var locationJSON = worldJSON.location[route.params.x+','+route.params.y][route.params.years]
+var bannerUrl = locationJSON.image ? locationJSON.image : worldsResult.eyeCatchingImage ? worldsResult.eyeCatchingImage.url : decodeURIComponent(worldsResult.user.avatarUrl.split('?url=')[1].split('&')[0])
+var worldBannerUrl = worldsResult.eyeCatchingImage ? worldsResult.eyeCatchingImage.url : decodeURIComponent(worldsResult.user.avatarUrl.split('?url=')[1].split('&')[0])
 
 onMounted(async ()=> {
     document.querySelector('#url').innerHTML = '<span>'+location.href.split('//')[1]+'</span> <i class="hgi-stroke hgi-copy-01"></i>'
@@ -71,6 +95,16 @@ onMounted(async ()=> {
             alert("복사되었습니다.");
         })
     };
+    
+    if (document.querySelector('#location-chro')) {
+        document.querySelector('#location-chro').addEventListener('click', ()=> {
+            if (document.querySelector('#location-chro').classList.length>0) {
+                document.querySelector('#location-chro').classList.remove('display-chro-list')
+            } else {
+                document.querySelector('#location-chro').classList.add('display-chro-list')
+            }
+        })
+    }
 })
 
 </script>
@@ -160,18 +194,6 @@ span.public {
 
 .box-cont img {
     border-radius: 10px;
-}
-
-.location-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 5px;
-    max-width: 300px;
-}
-
-.location-list > div {
-    text-align: center;
 }
 
 .list-title {

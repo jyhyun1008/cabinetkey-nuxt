@@ -214,7 +214,16 @@ img {
     max-width: unset;
 }
 
-.character-list > div {
+.location-list {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 10px;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+
+.character-list > div, .location-list > div {
     text-align: center;
     padding: 4px;
 }
