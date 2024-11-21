@@ -76,8 +76,32 @@ var getNoteParam = {
 }
 var noteResult = await $fetch(getNoteUrl, getNoteParam)
 var note = noteResult.text.split('```')
-var noteText = note[0]
+var noteText = useState('notetext', ()=> note[0])
 var noteJSON = JSON.parse(note[1])
+
+async function replyConnect(result) {
+
+    if (result.repliesCount > 0) {
+    
+        var getReplyUrl = config.public.misskey+`/api/notes/replies`
+        var getReplyParam = {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify({
+                noteId: result.id,
+            })
+        }
+        var replyResult = await $fetch(getReplyUrl, getReplyParam)
+        if (replyResult[0].user.username == result.user.username) {
+            noteText.value += replyResult[0].text
+            replyConnect(replyResult[0])
+        }
+    }
+}
+
+replyConnect(noteResult)
 
 onMounted(async ()=> {
 
