@@ -76,7 +76,8 @@ var getNoteParam = {
 }
 var noteResult = await $fetch(getNoteUrl, getNoteParam)
 var note = noteResult.text.split('```')
-var noteText = useState('notetext', ()=> note[0])
+var noteText = useState('notetext')
+noteText.value = note[0]
 var noteJSON = JSON.parse(note[1])
 
 async function replyConnect(result) {
