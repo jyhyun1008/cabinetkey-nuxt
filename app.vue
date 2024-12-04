@@ -9,7 +9,7 @@
       <div id="nav">
           <div id="logo"><a href="/">CabinetKey</a></div>
           <div id="nav-list">
-            <div class="nav-item">About</div>
+            <div class="nav-item">소개</div>
             <div class="nav-item" id="signin"></div>
           </div>
       </div>
@@ -24,10 +24,10 @@
 export default {
     mounted() {
 
-        if (localStorage.getItem('account')) {
-            document.querySelector('#signin').innerHTML = `<strong><a href="/signout">Sign Out</a></strong> from ${localStorage.getItem('signinId')}`
+        if (localStorage.getItem('token')) {
+            document.querySelector('#signin').innerHTML = `<a href="/mypage">@${localStorage.getItem('username')}</a> 에서 <strong><a href="/signout">로그아웃</a></strong>`
         } else {
-          document.querySelector('#signin').innerHTML = '<strong><a href="/signin">Sign In</a></strong>'
+          document.querySelector('#signin').innerHTML = '<strong><a href="/signin">로그인</a></strong>'
         }
     }
   }
@@ -58,6 +58,11 @@ export default {
 
 div {
   box-sizing: border-box;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
 }
 
 body {

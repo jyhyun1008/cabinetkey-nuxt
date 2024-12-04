@@ -5,7 +5,5 @@ export function usePostgres () {
     throw createError('Missing `NUXT_POSTGRES_URL` environment variable')
   }
 
-  return postgres(process.env.NUXT_POSTGRES_URL as string, {
-    ssl: 'require'
-  })
+  return postgres(process.env.NUXT_POSTGRES_URL)
 }

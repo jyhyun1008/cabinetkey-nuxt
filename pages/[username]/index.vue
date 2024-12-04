@@ -1,13 +1,13 @@
 <template>
     <div id="container">
         <div id="profile-cont">
-            <div id="banner"><img :src=profileResult.bannerUrl></div>
+            <div id="banner"><img :src=profileResult.bannerurl></div>
             <div id="avatar"><img :src=avatar></div>
             <div id="profile-text">
                 <div id="name">{{ name }}</div>
                 <div id="url"></div>
                 <div id="username">@{{ profileResult.username }}</div>
-                <div id="bio">{{ profileResult.description }}</div>
+                <div id="bio">{{ profileResult.bio }}</div>
             </div>
         </div>
         <h1>{{name}} 님의 창작물이에요!</h1>
@@ -33,7 +33,7 @@ import { marked } from 'marked';
 
 const route = useRoute()
 
-    var getProfileUrl = config.public.misskey+`/api/users/show`
+    var getProfileUrl = `/api/users/show`
     var getProfileParam = {
         method: 'POST',
         headers: {
@@ -44,9 +44,10 @@ const route = useRoute()
         })
     }
 
-    var profileResult = await $fetch(getProfileUrl, getProfileParam)
-    var avatar = decodeURIComponent(profileResult.avatarUrl.split('?url=')[1].split('&')[0])
-    var name = profileResult.name ? profileResult.name : profileResult.username
+    var result = await $fetch(getProfileUrl, getProfileParam)
+    var profileResult = result.rows[0]
+    var avatar = profileResult.avatarurl
+    var name = profileResult.knownname ? profileResult.knownname : profileResult.username
 
     var getWorldsNoteUrl = config.public.misskey+`/api/notes/search`
     var getWorldsNoteParam = {
@@ -55,9 +56,8 @@ const route = useRoute()
             'content-type': 'application/json',
         },
         body: JSON.stringify({
-            userId: profileResult.id,
             limit: 100,
-            query: 'cabinetKeySettings'
+            query: 'cabinetKeySettings1'
             })
         }
     
