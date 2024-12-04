@@ -10,9 +10,17 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxthub/core": "^0.8.7",
     "marked": "^15.0.0",
+    "md-editor-v3": "^5.0.2",
     "nuxt": "^3.14.159",
+    "pg": "^8.13.1",
+    "postgres": "^3.4.5",
+    "uuid": "^11.0.3",
     "vue": "latest",
     "vue-router": "latest"
+  },
+  "devDependencies": {
+    "wrangler": "^3.92.0"
   }
 }

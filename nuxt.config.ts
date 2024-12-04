@@ -6,5 +6,6 @@ export default defineNuxtConfig({
     public: {
       misskey: process.env.MISSKEY,
     }
-  }
+  },
+  modules: ['@nuxthub/core'],
 })

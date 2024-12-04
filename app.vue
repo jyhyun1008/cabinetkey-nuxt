@@ -20,8 +20,10 @@
 
 <script>
 
+
 export default {
     mounted() {
+
         if (localStorage.getItem('account')) {
             document.querySelector('#signin').innerHTML = `<strong><a href="/signout">Sign Out</a></strong> from ${localStorage.getItem('signinId')}`
         } else {
@@ -125,6 +127,47 @@ h1 {
 
 img {
     width: 100%;
+}
+
+form {
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-div {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.form-div>span {
+  width: 100px;
+  max-width: 100px;
+}
+
+input, textarea, select {
+  flex-grow: 1;
+  font-family: 'Pretendard';
+  padding: 4px;
+  border-radius: 2px;
+  border: 1px solid #e1e1e5;
+  box-sizing: border-box;
+}
+
+.button {
+  min-width: 100px;
+  text-align: center;
+  color: white;
+  background-color: var(--accent);
+  padding: 4px;
+  border-radius: 5px;
+}
+
+textarea {
+  width: 100%;
+  height: 300px;
 }
 
 #world-cont, .world-cont, #worlds-cont, #world-nav, .box-cont {
